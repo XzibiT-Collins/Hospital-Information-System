@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDao {
@@ -28,12 +29,12 @@ public class EmployeeDao {
 
             while (resultSet.next()){
                 Employee employee = new Employee(
-                        resultSet.getInt("id"),
                         resultSet.getString("surname"),
                         resultSet.getString("first_name"),
                         resultSet.getString("address"),
                         resultSet.getString("phone")
                 );
+                employee.setId(resultSet.getInt("id")); //set ID for employee
 
                 return employee;
             }
@@ -55,8 +56,67 @@ public class EmployeeDao {
             preparedStatement.setString(4,employee.getPhone());
 
             //execute query
-            preparedStatement.executeQuery(); //creates user
+            preparedStatement.executeUpdate(); //creates user
 
+        }catch (SQLException e){
+            throw new SQLException();
+        }
+    }
+
+    //update employee
+    public void updateEmployee(int id, String surname, String firstName, String address, String phone) throws SQLException{
+        String query = "UPDATE employee SET surname = ?, first_name = ?, address = ?, phone = ? WHERE id = ?";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            //set fields to create
+            preparedStatement.setString(1,surname);
+            preparedStatement.setString(2,firstName);
+            preparedStatement.setString(3,address);
+            preparedStatement.setString(4,phone);
+            preparedStatement.setInt(5,id);
+
+
+            //execute query
+            preparedStatement.executeUpdate(); //updates user
+
+        }catch (SQLException e){
+            throw new SQLException();
+        }
+    }
+
+    //delete employee
+    public void deleteEmployee(int id) throws SQLException{
+        String query = "DELETE FROM employee WHERE id = ?";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setInt(1,id);
+
+            preparedStatement.executeUpdate(); //deletes employee
+        }catch (SQLException e){
+            throw new SQLException();
+        }
+    }
+
+    //get all employees
+    public List<Employee> getAllEmployees()throws SQLException{
+        String query = "SELECT * FROM employee";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Employee> employeesList = new ArrayList<>();
+
+            while(resultSet.next()){
+                //create employee object for each result
+                Employee employee = new Employee(
+                        resultSet.getString("surname"),
+                        resultSet.getString("first_name"),
+                        resultSet.getString("address"),
+                        resultSet.getString("phone")
+                );
+                employee.setId(resultSet.getInt("id")); //set employee id
+
+                employeesList.add(employee);
+            }
+            return employeesList; //returns a list of employees
         }catch (SQLException e){
             throw new SQLException();
         }

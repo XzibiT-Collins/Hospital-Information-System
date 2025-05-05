@@ -7,11 +7,9 @@ public class Employee {
     private String address;
     private String phone;
 
-    public  Employee(){
+    public  Employee(){}
 
-    }
-    public Employee(int id,String surname, String firstName, String address, String phone){
-        this.id = id;
+    public Employee(String surname, String firstName, String address, String phone){
         this.surname = surname;
         this.firstName = firstName;
         this.address = address;
@@ -43,21 +41,5 @@ public class Employee {
     // Setters
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 }
