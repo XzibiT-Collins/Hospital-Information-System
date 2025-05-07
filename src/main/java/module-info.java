@@ -5,6 +5,8 @@ module com.example.him {
     requires java.desktop;
 
 
+    exports com.example.him.controllers to javafx.fxml;
     opens com.example.him to javafx.fxml;
+    opens com.example.him.controllers to javafx.fxml;
     exports com.example.him;
 }
