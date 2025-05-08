@@ -4,12 +4,12 @@ public class Department {
     private int id;
     private String depName;
     private String building;
-    private int doctorId;
+    private int director_id;
 
-    public Department(String depName, String building, int doctorId) {
+    public Department(String depName, String building, int director_id) {
         this.depName = depName;
         this.building = building;
-        this.doctorId = doctorId;
+        this.director_id = director_id;
     }
 
     public Department() {}
@@ -39,11 +39,11 @@ public class Department {
         this.building = building;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public int getDirector_id() {
+        return director_id;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDirector_id(int director_id) {
+        this.director_id = director_id;
     }
 }

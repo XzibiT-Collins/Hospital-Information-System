@@ -1,6 +1,4 @@
-USE testdb;
-
--- create employee table
+-- 1. Employee
 CREATE TABLE employee (
     id INT AUTO_INCREMENT PRIMARY KEY,
     surname CHAR(50) NOT NULL,
@@ -9,44 +7,44 @@ CREATE TABLE employee (
     phone CHAR(12)
 );
 
--- create doctor table (employee_id as both PK and FK)
+-- 2. Doctor (needs employee)
 CREATE TABLE doctor (
     employee_id INT PRIMARY KEY,
     specialty CHAR(50) NOT NULL,
     FOREIGN KEY (employee_id) REFERENCES employee(id)
 );
 
--- create department table
+-- 3. Department (needs doctor)
 CREATE TABLE department (
     id INT AUTO_INCREMENT PRIMARY KEY,
     dep_name CHAR(100) NOT NULL,
     building CHAR(50) NOT NULL,
-    doctor_id INT,
-    FOREIGN KEY (doctor_id) REFERENCES doctor(employee_id)
+    director_id INT,
+    FOREIGN KEY (director_id) REFERENCES doctor(employee_id)
 );
 
--- create nurse table (employee_id as both PK and FK)
+-- 4. Nurse (needs employee and department)
 CREATE TABLE nurse (
     employee_id INT PRIMARY KEY,
-    department_id INT,
+    department_id INT NOT NULL,
     rotation CHAR(50) NOT NULL,
     salary DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (employee_id) REFERENCES employee(id),
     FOREIGN KEY (department_id) REFERENCES department(id)
 );
 
--- create ward table
+-- 5. Ward (needs department and nurse)
 CREATE TABLE ward (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    ward_number INT,
-    no_of_beds INT,
-    nurse_id INT,
-    department_id INT,
-    FOREIGN KEY (nurse_id) REFERENCES nurse(employee_id),
-    FOREIGN KEY (department_id) REFERENCES department(id)
+    department_id INT NOT NULL,
+    local_ward_number INT NOT NULL,
+    no_of_beds INT NOT NULL,
+    supervisor_id INT NOT NULL,
+    PRIMARY KEY (department_id, local_ward_number),
+    FOREIGN KEY (department_id) REFERENCES department(id),
+    FOREIGN KEY (supervisor_id) REFERENCES nurse(employee_id)
 );
 
--- create patient table
+-- 6. Patient
 CREATE TABLE patient (
     id INT AUTO_INCREMENT PRIMARY KEY,
     first_name CHAR(50) NOT NULL,
@@ -55,28 +53,29 @@ CREATE TABLE patient (
     phone CHAR(12)
 );
 
--- create hospitalization table
+-- 7. Hospitalization (needs patient, doctor, department, ward)
 CREATE TABLE hospitalization (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    patient_id INT,
-    ward_id INT,
-    doctor_id INT,
-    department_id INT,
+    patient_id INT NOT NULL,
+    department_id INT NOT NULL,
+    doctor_id INT NOT NULL,
+    department_ward_id INT NOT NULL,
+    local_ward_number INT NOT NULL,
     diagnosis CHAR(200),
     bed_number INT,
+    room_number INT,
     FOREIGN KEY (patient_id) REFERENCES patient(id),
-    FOREIGN KEY (ward_id) REFERENCES ward(id),
-    FOREIGN KEY (doctor_id) REFERENCES doctor(employee_id),
     FOREIGN KEY (department_id) REFERENCES department(id),
-    room_number INT
+    FOREIGN KEY (doctor_id) REFERENCES doctor(employee_id),
+    FOREIGN KEY (department_ward_id, local_ward_number) REFERENCES ward(department_id, local_ward_number)
 );
 
--- create transfer table
+-- 8. Transfer (needs patient and hospitalization)
 CREATE TABLE transfer (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    patient_id INT,
-    from_hospitalization_id INT,
-    to_hospitalization_id INT,
+    patient_id INT NOT NULL,
+    from_hospitalization_id INT NOT NULL,
+    to_hospitalization_id INT NOT NULL,
     reason CHAR(200),
     FOREIGN KEY (patient_id) REFERENCES patient(id),
     FOREIGN KEY (from_hospitalization_id) REFERENCES hospitalization(id),

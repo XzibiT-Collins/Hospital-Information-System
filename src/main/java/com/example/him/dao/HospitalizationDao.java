@@ -27,9 +27,9 @@ public class HospitalizationDao {
             while (resultSet.next()) {
                 Hospitalization hospitalization = new Hospitalization(
                         resultSet.getInt("patient_id"),
-                        resultSet.getInt("ward_id"),
+                        resultSet.getInt("local_ward_number"),
                         resultSet.getInt("doctor_id"),
-                        resultSet.getInt("department_id"),
+                        resultSet.getInt("department_ward_id"),
                         resultSet.getString("diagnosis"),
                         resultSet.getInt("bed_number"),
                         resultSet.getInt("room_number")
@@ -47,7 +47,7 @@ public class HospitalizationDao {
 
     // Create hospitalization
     public void createHospitalization(Hospitalization hospitalization) throws SQLException {
-        String query = "INSERT INTO hospitalization (patient_id, ward_id, doctor_id, department_id, diagnosis, bed_number) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO hospitalization (patient_id, local_ward_number, doctor_id, department_ward_id, diagnosis, bed_number) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, hospitalization.getPatientId());
@@ -65,7 +65,7 @@ public class HospitalizationDao {
 
     // Update hospitalization
     public void updateHospitalization(int id, int patientId, int wardId, int doctorId, int departmentId, String diagnosis, int bedNumber) throws SQLException {
-        String query = "UPDATE hospitalization SET patient_id = ?, ward_id = ?, doctor_id = ?, department_id = ?, diagnosis = ?, bed_number = ? WHERE id = ?";
+        String query = "UPDATE hospitalization SET patient_id = ?, local_ward_number = ?, doctor_id = ?, department_ward_id = ?, diagnosis = ?, bed_number = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, patientId);

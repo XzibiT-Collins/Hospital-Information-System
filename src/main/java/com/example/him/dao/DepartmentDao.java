@@ -28,7 +28,7 @@ public class DepartmentDao {
                 Department department = new Department(
                         resultSet.getString("dep_name"),
                         resultSet.getString("building"),
-                        resultSet.getInt("doctor_id")
+                        resultSet.getInt("director_id")
                 );
                 department.setId(resultSet.getInt("id"));
                 return department;
@@ -42,12 +42,12 @@ public class DepartmentDao {
 
     // CREATE department
     public void createDepartment(Department department) throws SQLException {
-        String query = "INSERT INTO department (dep_name, building, doctor_id) VALUES (?, ?, ?)";
+        String query = "INSERT INTO department (dep_name, building, director_id) VALUES (?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, department.getDepName());
             preparedStatement.setString(2, department.getBuilding());
-            preparedStatement.setInt(3, department.getDoctorId());
+            preparedStatement.setInt(3, department.getDirector_id());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -56,13 +56,13 @@ public class DepartmentDao {
     }
 
     // UPDATE department
-    public void updateDepartment(int id, String depName, String building, int doctorId) throws SQLException {
-        String query = "UPDATE department SET dep_name = ?, building = ?, doctor_id = ? WHERE id = ?";
+    public void updateDepartment(int id, String depName, String building, int directorId) throws SQLException {
+        String query = "UPDATE department SET dep_name = ?, building = ?, director_id = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, depName);
             preparedStatement.setString(2, building);
-            preparedStatement.setInt(3, doctorId);
+            preparedStatement.setInt(3, directorId);
             preparedStatement.setInt(4, id);
 
             preparedStatement.executeUpdate();

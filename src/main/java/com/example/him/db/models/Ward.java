@@ -4,13 +4,13 @@ public class Ward {
     private int id;
     private int wardNumber;
     private int noOfBeds;
-    private int nurseId;
+    private int supervisorId;
     private int departmentId;
 
-    public Ward(int wardNumber, int noOfBeds, int nurseId, int departmentId) {
+    public Ward(int wardNumber, int noOfBeds, int supervisorId, int departmentId) {
         this.wardNumber = wardNumber;
         this.noOfBeds = noOfBeds;
-        this.nurseId = nurseId;
+        this.supervisorId = supervisorId;
         this.departmentId = departmentId;
     }
 
@@ -36,12 +36,12 @@ public class Ward {
         this.noOfBeds = noOfBeds;
     }
 
-    public int getNurseId() {
-        return nurseId;
+    public int getSupervisorId() {
+        return supervisorId;
     }
 
     public void setNurseId(int nurseId) {
-        this.nurseId = nurseId;
+        this.supervisorId = nurseId;
     }
 
     public int getDepartmentId() {

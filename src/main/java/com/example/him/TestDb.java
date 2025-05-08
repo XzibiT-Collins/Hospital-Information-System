@@ -34,7 +34,7 @@ public class TestDb {
             System.out.println("User updated successfully");
 
             //delete an employee
-            employeeDao.deleteEmployee(1);
+//            employeeDao.deleteEmployee(1);
             System.out.println("Employee deleted successfully");
 
             //get all employees
