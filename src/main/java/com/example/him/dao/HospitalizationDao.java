@@ -31,7 +31,8 @@ public class HospitalizationDao {
                         resultSet.getInt("doctor_id"),
                         resultSet.getInt("department_id"),
                         resultSet.getString("diagnosis"),
-                        resultSet.getInt("bed_number")
+                        resultSet.getInt("bed_number"),
+                        resultSet.getInt("room_number")
                 );
                 hospitalization.setId(resultSet.getInt("id"));
 

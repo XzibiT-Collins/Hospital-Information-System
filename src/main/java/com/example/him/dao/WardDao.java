@@ -25,6 +25,7 @@ public class WardDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Ward ward = new Ward(
+                        resultSet.getInt("ward_number"),
                         resultSet.getInt("no_of_beds"),
                         resultSet.getInt("nurse_id"),
                         resultSet.getInt("department_id")

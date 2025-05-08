@@ -2,11 +2,13 @@ package com.example.him.db.models;
 
 public class Ward {
     private int id;
+    private int wardNumber;
     private int noOfBeds;
     private int nurseId;
     private int departmentId;
 
-    public Ward(int noOfBeds, int nurseId, int departmentId) {
+    public Ward(int wardNumber, int noOfBeds, int nurseId, int departmentId) {
+        this.wardNumber = wardNumber;
         this.noOfBeds = noOfBeds;
         this.nurseId = nurseId;
         this.departmentId = departmentId;
@@ -16,6 +18,10 @@ public class Ward {
 
     public int getId() {
         return id;
+    }
+
+    public int getWardNumber(){
+        return this.wardNumber;
     }
 
     public void setId(int id) {
