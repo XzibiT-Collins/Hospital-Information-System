@@ -8,14 +8,16 @@ public class Hospitalization {
     private int departmentId;
     private String diagnosis;
     private int bedNumber;
+    private int roomNumber;
 
-    public Hospitalization(int patientId, int wardId, int doctorId, int departmentId, String diagnosis, int bedNumber) {
+    public Hospitalization(int patientId, int wardId, int doctorId, int departmentId, String diagnosis, int bedNumber,int roomNumber) {
         this.patientId = patientId;
         this.wardId = wardId;
         this.doctorId = doctorId;
         this.departmentId = departmentId;
         this.diagnosis = diagnosis;
         this.bedNumber = bedNumber;
+        this.roomNumber = roomNumber;
     }
 
     public Hospitalization() {}
