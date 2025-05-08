@@ -8,5 +8,6 @@ module com.example.him {
     exports com.example.him.controllers to javafx.fxml;
     opens com.example.him to javafx.fxml;
     opens com.example.him.controllers to javafx.fxml;
+    opens com.example.him.db.models to javafx.base;
     exports com.example.him;
 }
