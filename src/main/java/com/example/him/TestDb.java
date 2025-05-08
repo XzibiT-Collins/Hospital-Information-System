@@ -20,37 +20,37 @@ public class TestDb {
     public static void main(String[] args){
         try{
             //create new employee Dao
-//            EmployeeDao employeeDao = new EmployeeDao();
+            EmployeeDao employeeDao = new EmployeeDao();
 
             //create employee object
-//            Employee newEmp = new Employee("John","Doe","Accra","0548730194");
+            Employee newEmp = new Employee("John","Doe","Accra","0548730194");
 
             //create employee in db
-//            employeeDao.createEmployee(newEmp);
-//            System.out.println("Employee created successfully");
+            employeeDao.createEmployee(newEmp);
+            System.out.println("Employee created successfully");
 
             //update employee details
-//            employeeDao.updateEmployee(2,"Huvison","Etornam","East Legon","0550570368");
-//            System.out.println("User updated successfully");
+            employeeDao.updateEmployee(2,"Huvison","Etornam","East Legon","0550570368");
+            System.out.println("User updated successfully");
 
             //delete an employee
-//            employeeDao.deleteEmployee(1);
-//            System.out.println("Employee deleted successfully");
+            employeeDao.deleteEmployee(1);
+            System.out.println("Employee deleted successfully");
 
             //get all employees
-//            List<Employee> employeeList = employeeDao.getAllEmployees();
-//            for(Employee emp: employeeList){
-//                System.out.println(emp.getSurname() + " "+ emp.getFirstName());
-//            }
+            List<Employee> employeeList = employeeDao.getAllEmployees();
+            for(Employee emp: employeeList){
+                System.out.println(emp.getSurname() + " "+ emp.getFirstName());
+            }
 
 
             //DOCTOR OBJ TEST
-//            DoctorDao doctorDao = new DoctorDao();
+            DoctorDao doctorDao = new DoctorDao();
 
-//            Doctor doctor = new Doctor("Eye specialist");
-//            doctor.setEmployeeId(2);
-//            doctorDao.createDoctor(doctor);
-//            doctorDao.updateSpecialty(2,"Heart Surgeon");
+            Doctor doctor = new Doctor(1,"Eye specialist");
+            doctor.setEmployeeId(2);
+            doctorDao.createDoctor(doctor);
+            doctorDao.updateSpecialty(2,"Heart Surgeon");
 
             //create department
             Department department = new Department("Maternity","Block M",2);
