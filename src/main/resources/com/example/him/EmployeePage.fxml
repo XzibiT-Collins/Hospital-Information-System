@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="950.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.him.controllers.EmployeeController">
+<AnchorPane prefHeight="700.0" prefWidth="950.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.him.controllers.EmployeeController">
     <children>
         <HBox layoutX="14.0" layoutY="14.0" prefHeight="700.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -43,10 +43,10 @@
                         <TextField fx:id="txtPhone" promptText="Enter phone number" styleClass="form-field" />
                         <HBox alignment="CENTER" spacing="10.0">
                             <children>
-                                <Button fx:id="btnSave" mnemonicParsing="false" styleClass="btn-primary" text="Save" />
-                                <Button fx:id="btnUpdate" mnemonicParsing="false" styleClass="btn-info" text="Update" />
-                                <Button fx:id="btnDelete" mnemonicParsing="false" styleClass="btn-danger" text="Delete" />
-                                <Button fx:id="btnClear" mnemonicParsing="false" styleClass="btn-secondary" text="Clear" />
+                                <Button fx:id="btnSave" mnemonicParsing="false" onAction="#handleCreateEmployee" styleClass="btn-primary" text="Save" />
+                                <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#handleUpdateEmployee" styleClass="btn-info" text="Update" />
+                                <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleDeleteEmployee" styleClass="btn-danger" text="Delete" />
+                                <Button fx:id="btnClear" mnemonicParsing="false" onAction="#HandleClearFields" styleClass="btn-secondary" text="Clear" />
                             </children>
                             <VBox.margin>
                                 <Insets top="20.0" />
