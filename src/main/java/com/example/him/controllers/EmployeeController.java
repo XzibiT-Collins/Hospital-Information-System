@@ -75,7 +75,6 @@ public class EmployeeController {
 
     @FXML
     void handleCreateEmployee(ActionEvent event) {
-        String str_emp_id = txtId.getText();
         String surname = txtSurname.getText();
         String firstName = txtFirstname.getText();
         String address = txtAddress.getText();
@@ -84,13 +83,6 @@ public class EmployeeController {
             showAlert("Warning", "Make sure you fill all fields.", Alert.AlertType.WARNING);
             return;
         }
-
-//        int emp_id;
-//        try{
-//            emp_id = Integer.parseInt(str_emp_id);
-//        }catch (Exception e){
-//            showAlert("Error","Please input a valid ID", Alert.AlertType.ERROR);
-//        }
 
         //create employee
         try{
